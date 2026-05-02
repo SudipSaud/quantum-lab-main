@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
   preview: {
     port: 8080,
     host: true,
