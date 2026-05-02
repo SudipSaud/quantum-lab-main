@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import {
     Sparkles, Atom, ChevronRight, Rocket, AlertCircle,
 } from 'lucide-react';
-import { experiments } from '../lib/constants.ts';
+import { experiments } from '../lib/constants';
 import type { BackendStatus, ExperimentConfig } from '../types/index';
 
 interface DashboardProps {

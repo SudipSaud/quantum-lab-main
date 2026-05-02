@@ -7,8 +7,8 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
-import { markdownComponents, extractHeadings } from '../components/MarkdownRenderer.tsx';
-import { docFiles } from '../lib/constants.ts';
+import { markdownComponents, extractHeadings } from '../components/MarkdownRenderer';
+import { docFiles } from '../lib/constants';
 import type { DocFile } from '../types/index';
 
 // ---------------------------------------------------------------------------

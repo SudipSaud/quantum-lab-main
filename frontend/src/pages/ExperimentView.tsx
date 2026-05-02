@@ -9,9 +9,9 @@ import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
     ResponsiveContainer, AreaChart, Area, Cell,
 } from 'recharts';
-import { experiments } from '../lib/constants.ts';
-import { useExperiment } from '../hooks/useExperiment.ts';
-import SkeletonChart from '../components/SkeletonChart.tsx';
+import { experiments } from '../lib/constants';
+import { useExperiment } from '../hooks/useExperiment';
+import SkeletonChart from '../components/SkeletonChart';
 import type { BackendStatus, ExperimentConfig } from '../types/index';
 
 // Experiments that render as AreaChart (training curves / continuous data)
