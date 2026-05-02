@@ -19,4 +19,4 @@ COPY backend/ .
 # Create data dirs
 RUN mkdir -p data/docs/starter data/docs/generated data/sessions
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "main.py"]
