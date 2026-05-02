@@ -4,8 +4,8 @@ import {
     Atom, BookOpen, LayoutDashboard, Lock,
     Wifi, WifiOff,
 } from 'lucide-react';
-import { experiments } from '../lib/constants';
-import type { BackendStatus, ExperimentConfig } from '../types/index';
+import { experiments } from '../lib/constants.ts';
+import type { BackendStatus, ExperimentConfig } from '../types/index.ts';
 
 // ---------------------------------------------------------------------------
 // SidebarItem

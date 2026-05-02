@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { api } from '../lib/api';
+import { api } from '../lib/api.ts';
 import type { ExperimentResult, ChartDataPoint } from '../types/index';
 
 // Qiskit-based experiments that support the noise toggle
