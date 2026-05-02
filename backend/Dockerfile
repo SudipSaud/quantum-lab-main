@@ -6,15 +6,15 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc g++ libgomp1 && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Bake MiniLM into image at build time (80MB, always needed)
 RUN python -c "from sentence_transformers import SentenceTransformer; \
     SentenceTransformer('all-MiniLM-L6-v2')"
 
-# Copy all source
-COPY . .
+# Copy backend source
+COPY backend/ .
 
 # Create data dirs
 RUN mkdir -p data/docs/starter data/docs/generated data/sessions
