@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
-import { api } from '../lib/api.ts';
-import type { ExperimentResult, ChartDataPoint } from '../types/index.ts';
+import { api } from '../lib/api';
+import type { ExperimentResult, ChartDataPoint } from '../types/index';
 
 // Qiskit-based experiments that support the noise toggle
 const NOISE_SUPPORTED = new Set(['qrng-1bit', 'coin-flip', 'qrng-8bit', 'grover', 'teleportation']);
