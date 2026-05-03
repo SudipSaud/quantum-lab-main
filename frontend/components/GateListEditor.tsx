@@ -216,7 +216,7 @@ export default function GateListEditor({
 
                                 return (
                                     <g key={gi} style={{ cursor: 'grab' }}
-                                        draggable onDragStart={() => onDragStart(gi)}
+                                        {...({ draggable: true } as any)} onDragStart={() => onDragStart(gi)}
                                         onDragOver={(e) => onDragOver(e, gi)} onDragEnd={onDrop}>
                                         {/* Vertical connector */}
                                         <line x1={midX} y1={cy1} x2={midX} y2={cy2}
@@ -256,7 +256,7 @@ export default function GateListEditor({
 
                             return (
                                 <g key={gi} style={{ cursor: 'grab' }}
-                                    draggable onDragStart={() => onDragStart(gi)}
+                                    {...({ draggable: true } as any)} onDragStart={() => onDragStart(gi)}
                                     onDragOver={(e) => onDragOver(e, gi)} onDragEnd={onDrop}>
                                     <rect x={x} y={cy - GATE_H / 2} width={GATE_W} height={GATE_H} rx={7}
                                         fill={s.bg} stroke={s.border} strokeWidth={1.5}
@@ -353,7 +353,7 @@ export default function GateListEditor({
                                     <Tooltip
                                         cursor={{ fill: 'rgba(34,197,94,0.08)' }}
                                         contentStyle={{ background: '#0d0d0d', border: '1px solid rgba(34,197,94,0.3)', borderRadius: '10px', fontSize: '12px', fontWeight: 700 }}
-                                        formatter={(v: number) => [`${(v * 100).toFixed(1)}%`, 'Prob']}
+                                        formatter={(v: any) => [`${(Number(v) * 100).toFixed(1)}%`, 'Prob']}
                                     />
                                     <Bar dataKey="value" fill="url(#probGrad)" radius={[4, 4, 0, 0]} maxBarSize={44} />
                                 </BarChart>
