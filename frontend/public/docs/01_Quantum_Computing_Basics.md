@@ -305,7 +305,7 @@ In **Part 2: Quantum Mechanics Fundamentals**, we'll dive deeper into:
 | **Entanglement** | Correlation between qubits that persists regardless of distance |
 | **Measurement** | Observation that collapses quantum state to classical value |
 | **Interference** | Wave-like behavior where quantum states add or cancel |
-| **Ket** | $\|x\rangle$ notation for quantum states |
+| **Ket** | $\vert x \rangle$ notation for quantum states |
 | **Quantum State** | Mathematical description of a quantum system |
 
 ---

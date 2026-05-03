@@ -73,12 +73,12 @@ The factor $\theta/2$ (not $\theta$) ensures that antipodal points on the sphere
 
 | State | Bloch coordinates |
 |-------|------------------|
-| $\|0\rangle$ | $(0, 0, 1)$ — North Pole |
-| $\|1\rangle$ | $(0, 0, -1)$ — South Pole |
-| $\|+\rangle = \frac{1}{\sqrt{2}}(\|0\rangle+\|1\rangle)$ | $(1, 0, 0)$ — $+X$ axis |
-| $\|-\rangle = \frac{1}{\sqrt{2}}(\|0\rangle-\|1\rangle)$ | $(-1, 0, 0)$ — $-X$ axis |
-| $\|i\rangle = \frac{1}{\sqrt{2}}(\|0\rangle+i\|1\rangle)$ | $(0, 1, 0)$ — $+Y$ axis |
-| $\|-i\rangle = \frac{1}{\sqrt{2}}(\|0\rangle-i\|1\rangle)$ | $(0, -1, 0)$ — $-Y$ axis |
+| $\vert 0\rangle$ | $(0, 0, 1)$ — North Pole |
+| $\vert 1\rangle$ | $(0, 0, -1)$ — South Pole |
+| $\vert +\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle+\vert 1\rangle)$ | $(1, 0, 0)$ — $+X$ axis |
+| $\vert -\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle-\vert 1\rangle)$ | $(-1, 0, 0)$ — $-X$ axis |
+| $\vert i\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle+i\vert 1\rangle)$ | $(0, 1, 0)$ — $+Y$ axis |
+| $\vert -i\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle-i\vert 1\rangle)$ | $(0, -1, 0)$ — $-Y$ axis |
 
 > **Key insight:** Quantum gates are **rotations** of the Bloch sphere. The X gate is a 180° rotation around the X axis; H is a 180° rotation around the diagonal X+Z axis.
 
@@ -92,10 +92,10 @@ The factor $\theta/2$ (not $\theta$) ensures that antipodal points on the sphere
 
 | Symbol | Name | Meaning | Linear algebra |
 |--------|------|---------|----------------|
-| $\|\psi\rangle$ | **Ket** | Quantum state vector | Column vector |
-| $\langle\psi\|$ | **Bra** | Dual of ket | Row vector (conjugate transpose) |
-| $\langle\phi\|\psi\rangle$ | **Bracket (inner product)** | Overlap between states | $\phi^\dagger \psi$ (scalar) |
-| $\|\psi\rangle\langle\phi\|$ | **Outer product** | Operator/projector | Matrix |
+| $\vert \psi \rangle$ | **Ket** | Quantum state vector | Column vector |
+| $\langle \psi \vert$ | **Bra** | Dual of ket | Row vector (conjugate transpose) |
+| $\langle \phi \vert \psi \rangle$ | **Bracket (inner product)** | Overlap between states | $\phi^\dagger \psi$ (scalar) |
+| $\vert \psi \rangle\langle \phi \vert$ | **Outer product** | Operator/projector | Matrix |
 
 ### Inner Product
 
@@ -395,10 +395,10 @@ Already covered. The CNOT matrix and truth table:
 
 | Input $|ct\rangle$ | Output |
 |--------------------|--------|
-| $\|00\rangle$ | $\|00\rangle$ |
-| $\|01\rangle$ | $\|01\rangle$ |
-| $\|10\rangle$ | $\|11\rangle$ |
-| $\|11\rangle$ | $\|10\rangle$ |
+| $\vert 00\rangle$ | $\vert 00\rangle$ |
+| $\vert 01\rangle$ | $\vert 01\rangle$ |
+| $\vert 10\rangle$ | $\vert 11\rangle$ |
+| $\vert 11\rangle$ | $\vert 10\rangle$ |
 
 Circuit notation: `──●──` (control), `──⊕──` (target)
 

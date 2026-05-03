@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import math
 import os
 
 from config import get_settings
@@ -46,14 +47,24 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # ---------------------------------------------------------------------------
 # CORS — restrict to known origins in production
 # ---------------------------------------------------------------------------
-ALLOWED_ORIGINS = os.environ.get(
-    "CORS_ORIGINS",
-    "http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:8080",
-).split(",")
+ALLOWED_ORIGINS = [
+    o.strip()
+    for o in os.environ.get(
+        "CORS_ORIGINS",
+        "http://localhost:3000,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:8080",
+    ).split(",")
+    if o.strip()
+]
+# Railway preview URLs change per deploy; regex keeps CORS working without listing every hostname.
+_railway_cors_regex = os.environ.get(
+    "CORS_ORIGIN_REGEX",
+    r"https://([a-zA-Z0-9-]+\.)*railway\.app|https://([a-zA-Z0-9-]+\.)*up\.railway\.app",
+)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=_railway_cors_regex,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
@@ -91,6 +102,55 @@ def _run_circuit(qc: QuantumCircuit, shots: int, noise: bool) -> dict:
 
 def get_circuit_text(qc: QuantumCircuit) -> str:
     return str(qc.draw(output="text"))
+
+
+# ---------------------------------------------------------------------------
+# Qiskit text diagrams for PennyLane experiments (same structure as live ansatz)
+# ---------------------------------------------------------------------------
+def _circuit_diagram_h2_vqe() -> str:
+    """4-qubit UCC-style ansatz matching VQE-H₂ / VQE-sweep (basis |1100⟩ + RY + entangle)."""
+    qc = QuantumCircuit(4)
+    qc.x(0)
+    qc.x(1)
+    qc.barrier()
+    for i in range(4):
+        qc.ry(math.pi / 4, i)
+    qc.barrier()
+    qc.cx(0, 1)
+    qc.cx(2, 3)
+    qc.cz(1, 3)
+    qc.cx(0, 1)
+    qc.cx(2, 3)
+    return get_circuit_text(qc)
+
+
+def _circuit_diagram_vqc() -> str:
+    """2-qubit angle encoding + 2×(Rot + CNOT) layers (matches VQC training circuit)."""
+    qc = QuantumCircuit(2)
+    for i in range(2):
+        qc.rx(math.pi / 3, i)
+    for _ in range(2):
+        qc.ry(math.pi / 6, 0)
+        qc.rz(math.pi / 6, 0)
+        qc.rx(math.pi / 6, 0)
+        qc.ry(math.pi / 6, 1)
+        qc.rz(math.pi / 6, 1)
+        qc.rx(math.pi / 6, 1)
+        qc.cx(0, 1)
+    return get_circuit_text(qc)
+
+
+def _circuit_diagram_barren_sample() -> str:
+    """Representative 4-qubit layered ansatz (demo varies depth L=1..20)."""
+    n, depth = 4, 3
+    qc = QuantumCircuit(n)
+    for layer in range(depth):
+        for q in range(n):
+            qc.ry(math.pi / 3, q)
+        for q in range(n - 1):
+            qc.cx(q, q + 1)
+    header = "Representative circuit (3 layers shown; experiment samples L = 1,2,4,...,20).\n\n"
+    return header + get_circuit_text(qc)
 
 
 # ===========================================================================
@@ -234,7 +294,7 @@ def _run_vqe(steps: int) -> dict:
             "while a classical optimizer (Adam) updates parameters to find the "
             "minimum energy state."
         ),
-        "circuit": "VQE ANSATZ: [Basis Prep] -> [Rotation Layers] -> [Entanglement Layer]",
+        "circuit": _circuit_diagram_h2_vqe(),
         "molecule": "H2",
     }
 
@@ -288,7 +348,7 @@ def _vqe_stream_generator(steps: int):
             "energy of H\u2082 by iteratively optimising a parameterised quantum circuit. "
             "Each step adjusts gate angles to minimise \u27e8\u03c8|H|\u03c8\u27e9."
         ),
-        "circuit": "VQE: [BasisState] \u2192 [RY Rotations] \u2192 [DoubleExcitation] \u2192 \u27e8H\u27e9",
+        "circuit": _circuit_diagram_h2_vqe(),
         "molecule": "H\u2082 (0.7 \u00c5)",
     }
     yield f"data: {json.dumps({'done': True, 'result': result})}\n\n"
@@ -504,7 +564,7 @@ def _run_vqc(epochs: int) -> dict:
             "and a classical optimizer tunes the gate parameters to minimise "
             "binary cross-entropy loss."
         ),
-        "circuit": "VQC: [Angle Encoding RX] → [Rot + CNOT ×2 layers] → [⟨Z⟩ Measurement]",
+        "circuit": _circuit_diagram_vqc(),
         "dataset": "make_moons (60 pts, 2D)",
     }
 
@@ -574,7 +634,7 @@ def _run_vqe_sweep(steps_per_point: int) -> dict:
             f"equilibrium bond length ({eq_dist:.1f} Å). At shorter distances "
             "nuclear repulsion dominates; at longer distances the bond dissociates."
         ),
-        "circuit": "VQE PES: [BasisState] → [RY Rotations] → [DoubleExcitation] → ⟨H⟩ @ each distance",
+        "circuit": _circuit_diagram_h2_vqe(),
         "molecule": "H₂ PES",
     }
 
@@ -644,7 +704,7 @@ def _run_barren_plateaus() -> dict:
             "fundamental challenge in QML research, limiting scalability of "
             "variational algorithms."
         ),
-        "circuit": "Test Circuit: [RY(θ) ×n_qubits × depth layers] → [CNOT chain] → ⟨Z₀⟩",
+        "circuit": _circuit_diagram_barren_sample(),
     }
 
 
@@ -659,6 +719,14 @@ async def barren_plateaus(request: Request):
     except Exception as e:
         logger.exception("Barren Plateaus failed")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ===========================================================================
+# AI Helper / Playground (QML chat, circuits, simulation)
+# ===========================================================================
+from routes_ai import router as ai_router  # noqa: E402
+
+app.include_router(ai_router)
 
 
 # ===========================================================================

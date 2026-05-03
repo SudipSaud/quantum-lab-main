@@ -152,12 +152,12 @@ Where:
 
 | State | Position | Angles |
 |-------|----------|--------|
-| $\|0\rangle$ | North Pole | $\theta = 0$ |
-| $\|1\rangle$ | South Pole | $\theta = \pi$ |
-| $\|+\rangle = \frac{1}{\sqrt{2}}(\|0\rangle + \|1\rangle)$ | +X axis | $\theta = \frac{\pi}{2}, \phi = 0$ |
-| $\|-\rangle = \frac{1}{\sqrt{2}}(\|0\rangle - \|1\rangle)$ | -X axis | $\theta = \frac{\pi}{2}, \phi = \pi$ |
-| $\|i\rangle = \frac{1}{\sqrt{2}}(\|0\rangle + i\|1\rangle)$ | +Y axis | $\theta = \frac{\pi}{2}, \phi = \frac{\pi}{2}$ |
-| $\|-i\rangle = \frac{1}{\sqrt{2}}(\|0\rangle - i\|1\rangle)$ | -Y axis | $\theta = \frac{\pi}{2}, \phi = \frac{3\pi}{2}$ |
+| $\vert 0\rangle$ | North Pole | $\theta = 0$ |
+| $\vert 1\rangle$ | South Pole | $\theta = \pi$ |
+| $\vert +\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle + \vert 1\rangle)$ | +X axis | $\theta = \frac{\pi}{2}, \phi = 0$ |
+| $\vert -\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle - \vert 1\rangle)$ | -X axis | $\theta = \frac{\pi}{2}, \phi = \pi$ |
+| $\vert i\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle + i\vert 1\rangle)$ | +Y axis | $\theta = \frac{\pi}{2}, \phi = \frac{\pi}{2}$ |
+| $\vert -i\rangle = \frac{1}{\sqrt{2}}(\vert 0\rangle - i\vert 1\rangle)$ | -Y axis | $\theta = \frac{\pi}{2}, \phi = \frac{3\pi}{2}$ |
 
 ### Why the Bloch Sphere Matters
 
@@ -230,10 +230,14 @@ Where: $|\alpha_{00}|^2 + |\alpha_{01}|^2 + |\alpha_{10}|^2 + |\alpha_{11}|^2 = 
 
 ### Vector Representation
 
-$$|00\rangle = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \quad
-|01\rangle = \begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}, \quad
-|10\rangle = \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}, \quad
-|11\rangle = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}$$
+$$
+\begin{aligned}
+\vert 00\rangle &= \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \quad
+\vert 01\rangle &= \begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}, \\
+\vert 10\rangle &= \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}, \quad
+\vert 11\rangle &= \begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}
+\end{aligned}
+$$
 
 ### Tensor Product (⊗)
 
@@ -427,12 +431,12 @@ In **Part 3: Quantum Gates & Circuits**, we'll learn:
 
 | Concept | Formula |
 |---------|---------|
-| **Qubit state** | $\|\psi\rangle = \alpha\|0\rangle + \beta\|1\rangle$ |
-| **Normalization** | $\|\alpha\|^2 + \|\beta\|^2 = 1$ |
-| **Probability** | $P = \|\text{amplitude}\|^2$ |
-| **Inner product** | $\langle\phi\|\psi\rangle = \phi_0^*\psi_0 + \phi_1^*\psi_1$ |
-| **Tensor product** | $\|a\rangle \otimes \|b\rangle = \|ab\rangle$ |
-| **Bloch sphere** | $\|\psi\rangle = \cos(\theta/2)\|0\rangle + e^{i\phi}\sin(\theta/2)\|1\rangle$ |
+| **Qubit state** | $\vert \psi \rangle = \alpha\vert 0\rangle + \beta\vert 1\rangle$ |
+| **Normalization** | $\lvert \alpha \rvert^2 + \lvert \beta \rvert^2 = 1$ |
+| **Probability** | $P = \lvert \text{amplitude} \rvert^2$ |
+| **Inner product** | $\langle \phi \vert \psi \rangle = \phi_0^*\psi_0 + \phi_1^*\psi_1$ |
+| **Tensor product** | $\vert a \rangle \otimes \vert b \rangle = \vert ab \rangle$ |
+| **Bloch sphere** | $\vert \psi \rangle = \cos(\theta/2)\vert 0\rangle + e^{i\phi}\sin(\theta/2)\vert 1\rangle$ |
 
 ---
 

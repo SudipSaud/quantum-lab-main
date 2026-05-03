@@ -226,14 +226,14 @@ $$I|\psi\rangle = |\psi\rangle$$
 
 ## Single-Qubit Gate Summary Table
 
-| Gate | Matrix | Maps $\|0\rangle$ to | Maps $\|1\rangle$ to | Bloch Rotation |
+| Gate | Matrix | Maps $\vert 0\rangle$ to | Maps $\vert 1\rangle$ to | Bloch Rotation |
 |------|--------|---------------------|---------------------|----------------|
-| **X** | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ | $\|1\rangle$ | $\|0\rangle$ | 180° around X |
-| **Y** | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ | $i\|1\rangle$ | $-i\|0\rangle$ | 180° around Y |
-| **Z** | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ | $\|0\rangle$ | $-\|1\rangle$ | 180° around Z |
-| **H** | $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$ | $\|+\rangle$ | $\|-\rangle$ | Diagonal |
-| **S** | $\begin{bmatrix} 1 & 0 \\ 0 & i \end{bmatrix}$ | $\|0\rangle$ | $i\|1\rangle$ | 90° around Z |
-| **T** | $\begin{bmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{bmatrix}$ | $\|0\rangle$ | $e^{i\pi/4}\|1\rangle$ | 45° around Z |
+| **X** | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ | $\vert 1\rangle$ | $\vert 0\rangle$ | 180° around X |
+| **Y** | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ | $i\vert 1\rangle$ | $-i\vert 0\rangle$ | 180° around Y |
+| **Z** | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ | $\vert 0\rangle$ | $-\vert 1\rangle$ | 180° around Z |
+| **H** | $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$ | $\vert +\rangle$ | $\vert -\rangle$ | Diagonal |
+| **S** | $\begin{bmatrix} 1 & 0 \\ 0 & i \end{bmatrix}$ | $\vert 0\rangle$ | $i\vert 1\rangle$ | 90° around Z |
+| **T** | $\begin{bmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{bmatrix}$ | $\vert 0\rangle$ | $e^{i\pi/4}\vert 1\rangle$ | 45° around Z |
 
 ---
 
