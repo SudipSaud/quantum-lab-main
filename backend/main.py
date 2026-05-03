@@ -51,7 +51,7 @@ ALLOWED_ORIGINS = [
     o.strip()
     for o in os.environ.get(
         "CORS_ORIGINS",
-        "http://localhost:3000,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:8080",
+        "http://localhost:3000,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:8080,https://aware-endurance-production-d1a3.up.railway.app",
     ).split(",")
     if o.strip()
 ]
